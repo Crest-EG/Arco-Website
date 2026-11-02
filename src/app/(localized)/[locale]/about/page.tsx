@@ -5,7 +5,7 @@ import { Reveal } from '@/components/reveal';
 import { site, type Locale } from '@/config/site';
 import { localizedMetadata } from '@/lib/seo';
 
-const factoryImage = '/images/pexels-nikolai-kolosov-10666081.jpg';
+const factoryImage = '/images/pexels-nikolai-kolosov-10666081.webp';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

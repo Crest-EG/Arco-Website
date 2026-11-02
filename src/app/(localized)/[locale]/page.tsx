@@ -10,7 +10,7 @@ import { categories, products } from '@/data/products';
 import { site, type Locale } from '@/config/site';
 import { localizedMetadata, siteUrl } from '@/lib/seo';
 
-const wheatFieldImage = '/images/pexels-stitch-20280081.jpg';
+const wheatFieldImage = '/images/pexels-stitch-20280081.webp';
 
 const reasons = [
   { icon: Factory, title: 'why1Title', text: 'why1Text' },

@@ -1,11 +1,11 @@
 import { crestDemoProducts } from './crest-demo-products';
 
-const cropSprayerImage = '/images/pexels-stitch-20280081.jpg';
-const fertilizerImage = '/images/pexels-tahir-osman-109306362-16682802.jpg';
-const flaskImage = '/images/pexels-mehul-patel-829985-18692575.jpg';
-const fieldImage = '/images/pexels-tomfisk-5470449.jpg';
-const labImage = '/images/pexels-mikhail-nilov-9243571.jpg';
-const factoryImage = '/images/pexels-pixabay-257700.jpg';
+const cropSprayerImage = '/images/pexels-stitch-20280081.webp';
+const fertilizerImage = '/images/pexels-tahir-osman-109306362-16682802.webp';
+const flaskImage = '/images/pexels-mehul-patel-829985-18692575.webp';
+const fieldImage = '/images/pexels-tomfisk-5470449.webp';
+const labImage = '/images/pexels-mikhail-nilov-9243571.webp';
+const factoryImage = '/images/pexels-pixabay-257700.webp';
 
 // DEMO DATA
 export type Localized = { ar: string; en: string };

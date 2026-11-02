@@ -55,7 +55,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .main-nav { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 34px); font-size: .94rem; }
 .main-nav > a:not(.button) { transition: opacity .2s ease; }
 .main-nav > a:not(.button):hover { opacity: .65; }
-.language-link { font-weight: 600; }
+.main-nav > .language-link {
+  display: inline-flex; align-items: center; gap: 7px; margin-inline-start: 10px;
+  padding: 8px 13px; border: 1px solid rgba(0,0,0,.14); border-radius: var(--radius-pill);
+  color: #575757; font-family: Arial, sans-serif; font-size: .82rem; font-weight: 700;
+  letter-spacing: .025em; white-space: nowrap; transition: background .2s ease, border-color .2s ease;
+}
+.main-nav > .language-link:hover { border-color: var(--green); background: rgba(141,198,63,.12); }
 .button {
   display: inline-flex; min-height: 48px; align-items: center; justify-content: center;
   gap: 9px; padding: 11px 22px; border: 1px solid transparent; border-radius: var(--radius-pill);
@@ -307,6 +313,7 @@ h1, h2, h3, p { margin-block-start: 0; }
   }
   .main-nav.is-open { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
   .main-nav > a:not(.button) { padding: 12px 3px; }
+  .main-nav > .language-link { margin: 8px 0 2px; padding: 8px 13px; }
   .nav-cta { margin-block-start: 10px; }
   .hero { min-height: auto; }
   .hero-grid { grid-template-columns: 1fr; gap: 15px; padding-block: 65px 75px; }

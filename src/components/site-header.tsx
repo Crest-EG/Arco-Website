@@ -4,7 +4,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Languages, Menu, X } from 'lucide-react';
 import type { MouseEvent } from 'react';
 import type { Locale } from '@/config/site';
 import { site } from '@/config/site';
@@ -57,6 +57,7 @@ export function SiteHeader() {
             </NextLink>
           ))}
           <LocaleLink className="language-link" href={pathname} locale={otherLocale} onClick={switchLocale}>
+            <Languages size={17} aria-hidden="true" />
             {t('language')}
           </LocaleLink>
           <NextLink className="button button-dark nav-cta" href={`/${locale}/contact`} onClick={() => setMenuOpen(false)}>
