@@ -13,7 +13,7 @@ The root route redirects to Arabic. English and Arabic pages are under `/en` and
 
 ## Product content
 
-Edit the typed catalog in `src/data/products.ts` and the Crest demo list in `src/data/crest-demo-products.ts`. Store product images under `public/products/` and company photography under `public/images/`; reference both with their public URL paths. The current catalog includes demo content and must be replaced with approved product information before launch.
+Edit the typed catalog in `src/data/products.ts`. Product images are stored under `public/products/arco/`, and company photography is stored under `public/images/`; reference both with their public URL paths. Product slugs and image filenames use lowercase kebab-case.
 
 The shared font is in `src/app/fonts/`. Keep only active logo variants in `public/logo/`.
 

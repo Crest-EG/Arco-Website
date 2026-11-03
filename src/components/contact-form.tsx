@@ -20,23 +20,8 @@ type FormValues = {
 };
 
 function openWhatsApp(phone: string, text: string) {
-  const deepLink = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`;
   const webLink = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-  let appOpened = false;
-  const onVisibilityChange = () => {
-    if (document.visibilityState === 'hidden') appOpened = true;
-  };
-  document.addEventListener('visibilitychange', onVisibilityChange);
-  const appWindow = window.open(deepLink, '_blank');
-  if (!appWindow) {
-    document.removeEventListener('visibilitychange', onVisibilityChange);
-    window.open(webLink, '_blank', 'noopener,noreferrer');
-    return;
-  }
-  window.setTimeout(() => {
-    document.removeEventListener('visibilitychange', onVisibilityChange);
-    if (!appOpened) window.open(webLink, '_blank', 'noopener,noreferrer');
-  }, 1100);
+  window.location.assign(webLink);
 }
 
 export function ContactForm({ productFromQuery = '' }: { productFromQuery?: string }) {
@@ -44,7 +29,6 @@ export function ContactForm({ productFromQuery = '' }: { productFromQuery?: stri
   const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [submittedChannel, setSubmittedChannel] = useState<FormValues['channel'] | null>(null);
-  const [sheetFailed, setSheetFailed] = useState(false);
   const [preparing, setPreparing] = useState(false);
   const schema = useMemo(() => z.object({
     name: z.string().trim().min(1, t('required')),
@@ -90,9 +74,7 @@ export function ContactForm({ productFromQuery = '' }: { productFromQuery?: stri
     if (endpoint) {
       const body = new URLSearchParams({ payload: JSON.stringify(payload) });
       void fetch(endpoint, { method: 'POST', mode: 'no-cors', body, keepalive: true })
-        .catch(() => setSheetFailed(true));
-    } else {
-      setSheetFailed(true);
+        .catch((error: unknown) => console.error('Could not record the inquiry with the configured endpoint.', error));
     }
 
     const message = [
@@ -188,15 +170,11 @@ export function ContactForm({ productFromQuery = '' }: { productFromQuery?: stri
         {isSubmitting || preparing ? t('sending') : selectedChannel === 'email' ? t('emailSubmit') : t('submit')}
       </button>
       <p className="form-note">
-        {sheetFailed
-          ? selectedChannel === 'email' ? t('emailSheetError') : t('sheetError')
-          : selectedChannel === 'email' ? t('emailSendNote') : t('sendNote')}
+        {selectedChannel === 'email' ? t('emailSendNote') : t('sendNote')}
       </p>
       <p className="form-status" role="status" aria-live="polite">
         {submitted
-          ? sheetFailed
-            ? submittedChannel === 'email' ? t('emailSheetError') : t('sheetError')
-            : submittedChannel === 'email' ? t('emailSuccess') : t('success')
+          ? submittedChannel === 'email' ? t('emailSuccess') : t('success')
           : ''}
       </p>
     </form>

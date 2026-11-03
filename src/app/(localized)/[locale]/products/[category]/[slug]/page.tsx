@@ -68,14 +68,13 @@ export default async function ProductDetailsPage({
       </section>
       <section className="container page-body">
         <div className="product-detail-layout">
-          <div className={`detail-image${product.category === 'crest-demo' ? ' is-package-image' : ''}`}>
+          <div className="detail-image is-package-image">
             <Image src={product.image} alt={product.name[locale]} fill sizes="(max-width: 700px) 90vw, 45vw" priority />
           </div>
           <div className="detail-copy">
             <span className="product-category">{category.name[locale]}</span>
             <h1>{product.name[locale]}</h1>
             <p>{product.description[locale]}</p>
-            {product.demo && <p className="demo-callout">{common('demoNote')}</p>}
             <section className="detail-info">
               <h2>{t('composition')}</h2>
               <p>{product.composition[locale]}</p>

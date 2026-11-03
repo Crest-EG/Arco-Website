@@ -24,7 +24,6 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       </section>
       <section className="container page-body">
         <ProductBrowser />
-        <p className="demo-callout">{(await getTranslations('common'))('demoNote')}</p>
       </section>
     </>
   );

@@ -18,38 +18,66 @@ The contact form can send a copy of each inquiry to a Google Sheet. It then open
 
 ```javascript
 function doPost(e) {
+  const respond = () => ContentService
+    .createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+
   try {
-    if (!e || !e.parameter || !e.parameter.payload) {
-      throw new Error('Missing inquiry payload.');
+    const rawPayload = e && e.parameter && e.parameter.payload;
+    if (!rawPayload) return respond();
+
+    const inquiry = JSON.parse(rawPayload);
+    if (!inquiry || typeof inquiry !== 'object' || Array.isArray(inquiry)) return respond();
+
+    // Ignore automated submissions caught by the hidden form field.
+    if (typeof inquiry.website === 'string' && inquiry.website.trim()) return respond();
+
+    const name = cleanCell(inquiry.name, 120);
+    const email = cleanCell(inquiry.email, 254);
+    const phone = cleanCell(inquiry.phone, 40);
+    const message = cleanCell(inquiry.message, 5000);
+    const product = cleanCell(inquiry.productName, 200);
+    const country = cleanCell(inquiry.country, 100);
+
+    if (!name || !message || (!email && !phone)) return respond();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return respond();
+
+    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = spreadsheet && spreadsheet.getSheetByName('Inquiries');
+    if (!sheet) return respond();
+
+    const lock = LockService.getScriptLock();
+    if (!lock.tryLock(10000)) return respond();
+    try {
+      sheet.appendRow([
+        new Date(),
+        inquiry.locale === 'ar' || inquiry.locale === 'en' ? inquiry.locale : '',
+        name,
+        email,
+        phone,
+        message,
+        product,
+        country,
+        inquiry.channel === 'email' ? 'email' : 'whatsapp'
+      ]);
+    } finally {
+      lock.releaseLock();
     }
 
-    const inquiry = JSON.parse(e.parameter.payload);
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Inquiries');
-    if (!sheet) {
-      throw new Error('The Inquiries worksheet was not found.');
-    }
-
-    sheet.appendRow([
-      inquiry.timestamp || new Date().toISOString(),
-      inquiry.locale || '',
-      inquiry.name || '',
-      inquiry.email || '',
-      inquiry.phone || '',
-      inquiry.message || '',
-      inquiry.productName || '',
-      inquiry.country || '',
-      inquiry.channel || 'whatsapp'
-    ]);
-
-    return ContentService
-      .createTextOutput(JSON.stringify({ ok: true }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return respond();
   } catch (error) {
-    console.error(error);
-    return ContentService
-      .createTextOutput(JSON.stringify({ ok: false, error: String(error.message || error) }))
-      .setMimeType(ContentService.MimeType.JSON);
+    // Keep malformed requests and storage failures from producing an error response.
+    console.error('Inquiry processing failed:', error);
+    return respond();
   }
+}
+
+function cleanCell(value, maxLength) {
+  if (typeof value !== 'string') return '';
+
+  let text = value.replace(/[\u0000-\u001F\u007F]/g, ' ').trim().slice(0, maxLength);
+  if (/^[=+\-@]/.test(text)) text = "'" + text;
+  return text;
 }
 ```
 
@@ -63,4 +91,4 @@ function doPost(e) {
 6. Copy the deployed web app URL (the URL ending in `/exec`).
 7. Set it as `NEXT_PUBLIC_SHEET_ENDPOINT` in `.env.local` for local work and in the Vercel project's environment variables for each required environment.
 
-If you change the Apps Script, create a new deployment version and update the endpoint if Google provides a new URL. Since this public endpoint accepts form submissions, monitor the sheet for unwanted entries and limit spreadsheet access to trusted staff.
+Invalid or automated submissions are ignored, and the script returns the same generic response rather than an error. If writing to the sheet fails, the visitor can still continue with WhatsApp or email; check Apps Script execution logs to diagnose the issue. If you change the Apps Script, create a new deployment version and update the endpoint if Google provides a new URL. Since this public endpoint accepts form submissions, monitor the sheet for unwanted entries and limit spreadsheet access to trusted staff.

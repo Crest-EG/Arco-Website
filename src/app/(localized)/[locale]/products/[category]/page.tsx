@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ProductBrowser } from '@/components/product-browser';
 import { JsonLd } from '@/components/json-ld';
-import { categories, getCategory, type CategorySlug } from '@/data/products';
+import { categories, getCategory } from '@/data/products';
 import { site, type Locale } from '@/config/site';
 import { localizedMetadata } from '@/lib/seo';
 
@@ -56,8 +56,7 @@ export default async function CategoryPage({
       </section>
       <section className="container page-body">
         <div className="category-intro">{category.description[locale]}</div>
-        <ProductBrowser initialCategory={slug as CategorySlug} />
-        <p className="demo-callout">{common('demoNote')}</p>
+        <ProductBrowser initialCategory={category.slug} />
       </section>
     </>
   );

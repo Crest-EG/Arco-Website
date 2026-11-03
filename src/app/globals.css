@@ -121,7 +121,7 @@ h1, h2, h3, p { margin-block-start: 0; }
 .split-about .large-copy { font-size: clamp(1.3rem, 2.3vw, 2rem); line-height: 1.5; }
 .text-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; }
 .text-link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
-.category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .category-card {
   position: relative; display: flex; min-height: 340px; flex-direction: column; justify-content: space-between;
   overflow: hidden; padding: 30px; border-radius: var(--radius-lg); background: var(--green); color: var(--white); isolation: isolate;
@@ -156,7 +156,6 @@ h1, h2, h3, p { margin-block-start: 0; }
   display: -webkit-box; overflow: hidden; margin-block-end: 0; font-size: .9rem;
   color: #575757; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
 }
-.demo-label { display: inline-block; margin-block-start: 16px; padding: 3px 9px; border-radius: 999px; background: var(--green); font-size: .73rem; font-weight: 800; }
 .why-grid, .services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .why-card, .service-card { padding: 24px; border-block-start: 3px solid var(--green); }
 .why-card .card-number { display: block; margin-block-end: 26px; font-size: 1.65rem; font-weight: 800; }
@@ -241,7 +240,6 @@ h1, h2, h3, p { margin-block-start: 0; }
 .detail-info h2 { margin-block-end: 5px; font-size: 1.15rem; }
 .details-cta { margin-block-start: 18px; }
 .related-section { margin-block-start: 86px; }
-.demo-callout { padding: 12px 16px; margin-block: 18px; background: rgba(141,198,63,.22); font-size: .9rem; font-weight: 700; }
 
 .contact-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 52px; align-items: start; }
 .contact-form { padding: 30px; border: 1px solid rgba(0,0,0,.12); border-radius: var(--radius-lg); background: var(--white); box-shadow: 0 10px 32px rgba(0,0,0,.05); }
@@ -294,6 +292,7 @@ h1, h2, h3, p { margin-block-start: 0; }
 @media (max-width: 900px) {
   .hero-grid { gap: 20px; }
   .hero-visual { min-height: 370px; }
+  .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .product-detail-layout { gap: 30px; }

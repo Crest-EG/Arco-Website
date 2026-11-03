@@ -30,7 +30,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   setRequestLocale(locale);
   const t = await getTranslations('home');
   const common = await getTranslations('common');
-  const featured = products.filter((product) => product.category === 'crest-demo' && product.featured);
+  const featured = products.filter((product) => product.featured);
   const organizationData = {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'Manufacturer'],
@@ -100,7 +100,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           <div className="category-grid">
             {categories.map((category, index) => (
               <Reveal key={category.slug} delay={index * 0.1}>
-                <CategoryCard category={category} locale={locale} />
+                <CategoryCard category={category} locale={locale} index={index} />
               </Reveal>
             ))}
           </div>
@@ -112,7 +112,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               {featured.map((product) => <ProductCard key={product.slug} product={product} locale={locale} />)}
             </div>
           ) : <p>{t('featuredEmpty')}</p>}
-          <p className="demo-callout">{common('demoNote')}</p>
           <Link className="text-link" href={`/${locale}/products`}>{common('viewAll')} <ArrowUpLeft size={18} aria-hidden="true" /></Link>
         </div>
       </section>

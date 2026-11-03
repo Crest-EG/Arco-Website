@@ -99,7 +99,7 @@ Sections in this order, each with its own entrance animation and a smooth transi
 
 1. **Hero**: strong headline + one-line subheading, two CTAs (Browse products / Contact us), a hero visual built from brand shapes (and product/factory image when available).
 2. **About (short)**: who Arco is, 2 to 3 sentences, a link to the About page.
-3. **Our products**: two big category cards (Pesticides, Fertilizers) linking to the category pages, plus a row of featured products from the data file.
+3. **Our products**: three category cards (Fertilizers, Salinity Control, Stress Resistance) linking to the category pages, plus a row of featured products from the data file.
 4. **Why choose us**: 3 to 4 cards with icon + title + line. Only claims that are safe and generic (e.g. local manufacturing, quality focus, technical support through the office, reliable supply). No unverifiable numbers.
 5. **Our services**: **include only if supported by real content**. Default content: technical guidance on product usage, supply to distributors and farms, product inquiries and quotations. Keep it short and generic. Easy to remove via a flag in `site.ts`.
 6. **Call to action**: band in green with dark text, "Contact us" button and the phone/WhatsApp.
@@ -108,13 +108,13 @@ Sections in this order, each with its own entrance animation and a smooth transi
 ## 7. Products
 
 ### Data model
-Products live in `src/data/products.ts` (typed) with images in `public/products/<slug>/`. The user will replace the demo data later, so the structure must stay stable and simple.
+Products live in `src/data/products.ts` (typed) with images in `public/products/arco/`. The catalog contains 15 Arco products, with lowercase kebab-case slugs and image filenames.
 
 ```ts
 type Localized = { ar: string; en: string };
 
 type Category = {
-  slug: 'pesticides' | 'fertilizers';
+  slug: 'fertilizers' | 'salinity-correctors' | 'enhancers';
   name: Localized;
   description: Localized;
   image?: string;
@@ -135,9 +135,8 @@ type Product = {
 
 Optional fields can be added later by the user without code changes (render a section only if the field exists).
 
-- Start with the two categories: **Pesticides (مبيدات)** and **Fertilizers (أسمدة)**.
-- Create **6 demo products** (3 per category) with realistic but clearly placeholder content, so the layout can be judged. Mark demo products with `demo: true` in the data and keep a `// DEMO DATA` comment at the top of the file. Do not make safety, dosage, or registration claims in the demo content.
-- Do not publish demo data silently as fact: in the final handoff list which items are demo.
+- Use three categories: **Fertilizers (الأسمدة)**, **Salinity Control (معالجات الملوحة)**, and **Stress Resistance (مقاومات الإجهاد)**.
+- Keep product descriptions and compositions aligned with the supplied Arco brochure and packaging. For application directions, refer customers to the product label.
 
 ### Product listing
 Category tabs/filters, a responsive grid of product cards (image, name, short description, "View details"), and a search box (client-side) if it stays clean. Empty state when a category has no products.
@@ -229,7 +228,7 @@ docs/google-apps-script.md
 
 ## 14. Final handoff note (the agent must provide)
 
-- What is demo and must be replaced (products, images, FAQ if generic, services section).
+- Product information is based on the supplied Arco brochure and packaging; confirm final labels and application directions with the company.
 -- for service (في خدمة الدعم الفني كان بشمهندس مصطفى وافق على ان ممكن العملاء يتوصلوا مع المهندسين الزراعيين لاي دعم او سؤال مش شرط في المنتجات فقط
 و طبعا خدمة الرئيسية مثل  التوصيل في جميع المحافظات و التعامل مع تجار الجمله والقطعه)
 - Missing info to fill in: email address, office address in Smouha, any real stats or certifications.

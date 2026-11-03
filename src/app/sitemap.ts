@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { locales } from '@/config/site';
-import { products } from '@/data/products';
+import { categories, products } from '@/data/products';
 import { siteUrl } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,8 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   })));
   const categoryPages = locales.flatMap((locale) =>
-    ['pesticides', 'fertilizers'].map((category) => ({
-      url: `${siteUrl}/${locale}/products/${category}`,
+    categories.map((category) => ({
+      url: `${siteUrl}/${locale}/products/${category.slug}`,
     })),
   );
   const productPages = locales.flatMap((locale) => products.map((product) => ({
