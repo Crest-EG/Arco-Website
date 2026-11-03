@@ -77,11 +77,21 @@ export default async function ProductDetailsPage({
             <p>{product.description[locale]}</p>
             <section className="detail-info">
               <h2>{t('composition')}</h2>
-              <p>{product.composition[locale]}</p>
+              <ul className="detail-list">
+                {product.composition.map((line) => <li key={line[locale]}>{line[locale]}</li>)}
+              </ul>
             </section>
             <section className="detail-info">
               <h2>{t('usage')}</h2>
-              <p>{product.usage[locale]}</p>
+              <ul className="detail-list">
+                {product.usage.map((line) => <li key={line[locale]}>{line[locale]}</li>)}
+              </ul>
+            </section>
+            <section className="detail-info">
+              <h2>{t('variants')}</h2>
+              <div className="variant-grid">
+                {product.variants.map((variant) => <span className="variant-card" key={variant[locale]}>{variant[locale]}</span>)}
+              </div>
             </section>
             <Link className="button button-dark details-cta" href={`/${locale}/contact?product=${product.slug}`}>{t('inquire')}</Link>
           </div>

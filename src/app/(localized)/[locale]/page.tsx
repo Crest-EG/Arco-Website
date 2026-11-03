@@ -104,6 +104,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section home-section featured-products-section">
+        <div className="container">
           <div className="section-heading featured-heading">
             <p className="eyebrow">{t('featured')}</p>
           </div>
@@ -112,7 +117,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               {featured.map((product) => <ProductCard key={product.slug} product={product} locale={locale} />)}
             </div>
           ) : <p>{t('featuredEmpty')}</p>}
-          <Link className="text-link" href={`/${locale}/products`}>{common('viewAll')} <ArrowUpLeft size={18} aria-hidden="true" /></Link>
+          <Link className="text-link featured-view-all" href={`/${locale}/products`}>{common('viewAll')} <ArrowUpLeft size={18} aria-hidden="true" /></Link>
         </div>
       </section>
 
@@ -133,25 +138,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           </div>
         </div>
       </section>
-
-      {site.servicesEnabled && (
-        <section className="section home-section services-band">
-          <div className="container">
-            <Reveal className="section-heading">
-              <p className="eyebrow">{t('servicesEyebrow')}</p>
-              <h2>{t('servicesTitle')}</h2>
-            </Reveal>
-            <div className="services-grid">
-              {[1, 2, 3].map((number) => (
-                <Reveal className="service-card" key={number} delay={number * 0.08}>
-                  <h3>{t(`service${number}Title`)}</h3>
-                  <p>{t(`service${number}Text`)}</p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="cta-band">
         <div className="container">

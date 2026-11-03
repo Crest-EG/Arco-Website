@@ -125,8 +125,9 @@ type Product = {
   category: Category['slug'];
   name: Localized;
   description: Localized;       // short + full
-  composition: Localized;       // the formulation/composition (free text or list)
-  usage: Localized;             // usage methods / application
+  composition: Localized[];     // individual formulation components
+  usage: Localized[];           // usage methods / application directions
+  variants: Localized[];        // available package sizes
   image: string;                // main image path
   gallery?: string[];
   featured?: boolean;
@@ -142,7 +143,7 @@ Optional fields can be added later by the user without code changes (render a se
 Category tabs/filters, a responsive grid of product cards (image, name, short description, "View details"), and a search box (client-side) if it stays clean. Empty state when a category has no products.
 
 ### Product details page
-Image (with gallery if present), name, category badge, description, composition, usage methods, a prominent **"Inquire about this product"** CTA that goes to the contact form with the product preselected (query param), related products from the same category.
+Image (with gallery if present), name, category badge, description, composition and usage as separate list items, available package sizes as cards, a prominent **"Inquire about this product"** CTA that goes to the contact form with the product preselected (query param), related products from the same category.
 
 ## 8. Contact page and form
 
