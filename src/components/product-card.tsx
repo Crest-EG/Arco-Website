@@ -8,7 +8,7 @@ export function ProductCard({ product, locale }: { product: Product; locale: Loc
   return (
     <article className="product-card">
       <Link className="product-image is-package-image" href={href} tabIndex={-1} aria-hidden="true">
-        <Image src={product.image} alt={product.name[locale]} fill sizes="(max-width: 700px) 90vw, (max-width: 1100px) 45vw, 30vw" />
+        <Image src={product.image} alt={product.name[locale]} fill sizes="(max-width: 420px) 90vw, (max-width: 700px) 44vw, (max-width: 900px) 45vw, 22vw" />
       </Link>
       <div className="product-card-copy">
         <h3><Link href={href}>{product.name[locale]}</Link></h3>

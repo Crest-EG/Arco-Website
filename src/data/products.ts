@@ -70,7 +70,7 @@ export const products: Product[] = [
       en: 'Potassium in citrate and acetate forms.',
     },
     usage: labelUsage,
-    image: productImage('arco-k.png'),
+    image: productImage('arco-k.webp'),
     featured: true,
   },
   {
@@ -86,7 +86,7 @@ export const products: Product[] = [
       en: 'Potassium (potassium acetate).',
     },
     usage: labelUsage,
-    image: productImage('potafast.png'),
+    image: productImage('potafast.webp'),
   },
   {
     slug: 'bor-m',
@@ -101,7 +101,7 @@ export const products: Product[] = [
       en: 'Boron and molybdenum.',
     },
     usage: labelUsage,
-    image: productImage('bor-m.png'),
+    image: productImage('bor-m.webp'),
   },
   {
     slug: 'arco-iron',
@@ -116,7 +116,7 @@ export const products: Product[] = [
       en: 'Iron chelated with EDTA.',
     },
     usage: labelUsage,
-    image: productImage('iron.png'),
+    image: productImage('iron.webp'),
   },
   {
     slug: 'arco-manganese',
@@ -131,7 +131,7 @@ export const products: Product[] = [
       en: 'Manganese.',
     },
     usage: labelUsage,
-    image: productImage('arco-manganese.png'),
+    image: productImage('arco-manganese.webp'),
   },
   {
     slug: 'arco-mix',
@@ -146,7 +146,7 @@ export const products: Product[] = [
       en: 'Iron, manganese, copper, and zinc.',
     },
     usage: labelUsage,
-    image: productImage('arco-mix.png'),
+    image: productImage('arco-mix.webp'),
   },
   {
     slug: 'arco-zinc-manganese',
@@ -161,7 +161,7 @@ export const products: Product[] = [
       en: 'Nitrogen, zinc, and manganese.',
     },
     usage: labelUsage,
-    image: productImage('zn-mn.png'),
+    image: productImage('zn-mn.webp'),
   },
   {
     slug: 'arco-jello-man',
@@ -176,7 +176,7 @@ export const products: Product[] = [
       en: 'Manganese and gluconic acid.',
     },
     usage: labelUsage,
-    image: productImage('jello-man.png'),
+    image: productImage('jello-man.webp'),
   },
   {
     slug: 'arco-jello-copper',
@@ -191,7 +191,7 @@ export const products: Product[] = [
       en: 'Copper, sulfur, and gluconic acid.',
     },
     usage: labelUsage,
-    image: productImage('jello-cu.png'),
+    image: productImage('jello-cu.webp'),
   },
   {
     slug: 'arco-magnum',
@@ -206,7 +206,7 @@ export const products: Product[] = [
       en: 'Nitrogen and magnesium.',
     },
     usage: labelUsage,
-    image: productImage('magnum.png'),
+    image: productImage('magnum.webp'),
   },
   {
     slug: 'sulfo-cal',
@@ -221,7 +221,7 @@ export const products: Product[] = [
       en: 'Potassium (K₂O) 15%, nitrogen 5%, calcium (CaO) 14%, and sulfur 11.19%.',
     },
     usage: labelUsage,
-    image: productImage('sulfo-cal.png'),
+    image: productImage('sulfo-cal.webp'),
     featured: true,
   },
   {
@@ -237,7 +237,7 @@ export const products: Product[] = [
       en: 'Calcium oxide (CaO) at 35%.',
     },
     usage: labelUsage,
-    image: productImage('anti-salt.png'),
+    image: productImage('anti-salt.webp'),
   },
   {
     slug: 'silk-power',
@@ -252,7 +252,7 @@ export const products: Product[] = [
       en: 'Potassium and silicon in the form of potassium silicate.',
     },
     usage: labelUsage,
-    image: productImage('silk-power.png'),
+    image: productImage('silk-power.webp'),
     featured: true,
   },
   {
@@ -268,7 +268,7 @@ export const products: Product[] = [
       en: 'Calcium, magnesium, and boron.',
     },
     usage: labelUsage,
-    image: productImage('jersey-cap-mag.png'),
+    image: productImage('jersey-cap-mag.webp'),
   },
   {
     slug: 'cool-surf',
@@ -283,7 +283,7 @@ export const products: Product[] = [
       en: 'Polysorbate and Tween.',
     },
     usage: labelUsage,
-    image: productImage('cool-surf.png'),
+    image: productImage('cool-surf.webp'),
   },
 ];
 
